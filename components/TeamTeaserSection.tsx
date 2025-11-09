@@ -15,12 +15,14 @@ interface TeamMemberAvatarProps {
   name: string;
   role: string;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-const TeamMemberAvatar: React.FC<TeamMemberAvatarProps> = ({ imgSrc, name, role, className }) => {
+const TeamMemberAvatar: React.FC<TeamMemberAvatarProps> = ({ imgSrc, name, role, className, style }) => {
   return (
     <div
       className={`text-center transition-all duration-500 ease-in-out ${className}`}
+      style={style}
     >
       <div className="relative group">
         <img
@@ -51,11 +53,12 @@ const TeamTeaserSection: React.FC<TeamTeaserProps> = ({ navigate }) => {
 
     const interval = setInterval(() => {
       setIsAnimating(true);
-      // Wait for fade-out animation to finish before changing the team
+      // Wait for a staggered fade-out animation to finish before changing the team
+      // We increased the timeout to allow the staggered exit to complete visually
       setTimeout(() => {
         setDisplayedTeam(shuffleArray(fullTeam).slice(0, 3));
         setIsAnimating(false);
-      }, 500); // This should match the transition duration
+      }, 800); 
     }, 5000);
 
     return () => clearInterval(interval);
@@ -76,7 +79,10 @@ const TeamTeaserSection: React.FC<TeamTeaserProps> = ({ navigate }) => {
           <TeamMemberAvatar
             key={member.name + index} // Use index in key to force re-render on change
             {...member}
-            className={isAnimating ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}
+            className={isAnimating ? 'opacity-0 scale-75 translate-y-4' : 'opacity-100 scale-100 translate-y-0'}
+            style={{ 
+                transitionDelay: `${index * 150}ms`,
+            }}
           />
         ))}
       </div>

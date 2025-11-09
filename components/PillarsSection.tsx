@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PillarCard = ({ title, description }: { title: string, description: string }) => (
-  <div className="flip-card h-48 rounded-[20px]" tabIndex={0}>
+  <div className="flip-card h-48 rounded-[20px] w-full" tabIndex={0}>
     <div className="flip-card-inner rounded-[20px] shadow-[0_4px_12px_rgba(0,0,0,0.05)]">
       <div className="flip-card-front bg-card p-4 rounded-[20px]">
         <h3 className="text-xl font-bold text-text-dark">{title}</h3>
@@ -39,8 +39,14 @@ const PillarsSection: React.FC<PillarsSectionProps> = ({ navigate }) => {
         Nos 3 Piliers pour l'AECHA
       </h2>
       <div className="grid md:grid-cols-3 gap-6">
-        {pillars.map(pillar => (
-          <PillarCard key={pillar.title} {...pillar} />
+        {pillars.map((pillar, index) => (
+          <div 
+            key={pillar.title} 
+            className="stagger-appear w-full"
+            style={{ transitionDelay: `${index * 200}ms` }}
+          >
+            <PillarCard {...pillar} />
+          </div>
         ))}
       </div>
       <div className="text-center mt-8">
