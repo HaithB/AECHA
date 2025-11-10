@@ -4,6 +4,6 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // This is the line you must add:
-  base: '/AECHA/', 
+  // Le chemin doit correspondre exactement au nom de votre dépôt GitHub
+  base: '/aecha-website/', 
 })

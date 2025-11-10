@@ -48,6 +48,11 @@ const Header: React.FC<HeaderProps> = ({ navigate, currentPage, language, setLan
     setIsMenuOpen(false);
   };
 
+  const getLinkClass = (path: string) => {
+    const isActive = currentPage === path || (path !== '/' && currentPage.startsWith(path));
+    return `transition-colors ${isActive ? 'text-accent font-bold' : 'hover:text-text-light'}`;
+  };
+
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-bg-primary/80 backdrop-blur-sm fade-in-up-section">
@@ -65,9 +70,9 @@ const Header: React.FC<HeaderProps> = ({ navigate, currentPage, language, setLan
           <div className="flex items-center">
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center space-x-8 text-lg font-semibold text-text-dark">
-                <a href="/vision" onClick={(e) => handleNavClick(e, '/vision')} className="hover:text-text-light transition-colors">{t.vision}</a>
-                <a href="/programme" onClick={(e) => handleNavClick(e, '/programme')} className="hover:text-text-light transition-colors">{t.programme}</a>
-                <a href="/ta-voix" onClick={(e) => handleNavClick(e, '/ta-voix')} className="hover:text-text-light transition-colors">{t.taVoix}</a>
+                <a href="/vision" onClick={(e) => handleNavClick(e, '/vision')} className={getLinkClass('/vision')}>{t.vision}</a>
+                <a href="/programme" onClick={(e) => handleNavClick(e, '/programme')} className={getLinkClass('/programme')}>{t.programme}</a>
+                <a href="/ta-voix" onClick={(e) => handleNavClick(e, '/ta-voix')} className={getLinkClass('/ta-voix')}>{t.taVoix}</a>
             </nav>
             <div className="hidden md:block w-px h-6 bg-gray-300 mx-6"></div>
             <div className="hidden md:flex items-center space-x-2 text-sm font-bold">
@@ -107,9 +112,9 @@ const Header: React.FC<HeaderProps> = ({ navigate, currentPage, language, setLan
       `}>
         <div className="container mx-auto px-4 sm:px-6 h-full">
           <nav className="flex flex-col items-center justify-center h-full space-y-8 text-2xl font-semibold text-text-dark">
-            <a href="/vision" onClick={(e) => handleNavClick(e, '/vision')} className="hover:text-text-light transition-colors">{t.vision}</a>
-            <a href="/programme" onClick={(e) => handleNavClick(e, '/programme')} className="hover:text-text-light transition-colors">{t.programme}</a>
-            <a href="/ta-voix" onClick={(e) => handleNavClick(e, '/ta-voix')} className="hover:text-text-light transition-colors">{t.taVoix}</a>
+            <a href="/vision" onClick={(e) => handleNavClick(e, '/vision')} className={getLinkClass('/vision')}>{t.vision}</a>
+            <a href="/programme" onClick={(e) => handleNavClick(e, '/programme')} className={getLinkClass('/programme')}>{t.programme}</a>
+            <a href="/ta-voix" onClick={(e) => handleNavClick(e, '/ta-voix')} className={getLinkClass('/ta-voix')}>{t.taVoix}</a>
             <div className="pt-8 flex items-center space-x-4 text-lg font-bold">
               <button 
                 onClick={() => handleLangClick('fr')} 

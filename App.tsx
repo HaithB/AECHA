@@ -54,7 +54,7 @@ const themes = {
 };
 
 
-const HomePage = ({ navigate, language }: { navigate: NavigateFunction, language: Language }) => (
+const HomePage = ({ navigate }: { navigate: NavigateFunction }) => (
   <>
     <Hero />
     <div className="p-4 sm:p-6 space-y-6">
@@ -128,7 +128,7 @@ const App: React.FC = () => {
       ComponentToRender = <TaVoixPage language={language} />;
       break;
     default:
-      ComponentToRender = <HomePage navigate={navigate} language={language} />;
+      ComponentToRender = <HomePage navigate={navigate} />;
   }
 
   return (
